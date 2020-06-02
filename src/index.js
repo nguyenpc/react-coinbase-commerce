@@ -72,14 +72,14 @@ class CoinbaseCommerceButton extends React.Component<Props, State>{
 
   render(){
     const {showModal} = this.state;
-    const {onLoad, onChargeSuccess, onChargeFailure, checkoutId, chargeId, customMetadata, onPaymentDetected, disableCaching, wrapperStyle} = this.props;
+    const {isVisible, onLoad, onChargeSuccess, onChargeFailure, checkoutId, chargeId, customMetadata, onPaymentDetected, disableCaching, wrapperStyle} = this.props;
     const iFrameProps = {onLoad, onChargeSuccess, onChargeFailure, checkoutId, chargeId, onPaymentDetected, disableCaching};
     const buttonProps = getButtonProps(this.props);
     return (
       <div style={wrapperStyle}>
-        <a href="https://commerce.coinbase.com" rel="external" title="Pay with Bitcoin, Bitcoin Cash, DAI, Litecoin, Ethereum, or USD Coin" onClick={e => e.preventDefault()}>
+       {isVisible && ( <a href="https://commerce.coinbase.com" rel="external" title="Pay with Bitcoin, Bitcoin Cash, DAI, Litecoin, Ethereum, or USD Coin" onClick={e => e.preventDefault()}>
           <Button {...buttonProps} onClick={this.handleButtonClick}/>
-        </a>
+        </a>)}
         {showModal && (
           <IFrame {...iFrameProps} onModalClose={this.handleModalClose} onError={this.handleError} customMetadata={customMetadata}/>
         )}
