@@ -6,6 +6,7 @@ import type {MessageData} from './types';
 
 type Props = {
   styled?: boolean,
+  autoLoad?: boolean,
   children?: React.Node,
   checkoutId?: string,
   chargeId?: string,
@@ -45,7 +46,7 @@ class CoinbaseCommerceButton extends React.Component<Props, State>{
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: !!props.autoLoad
     };
   }
 
